@@ -3,13 +3,13 @@ require 'capybara/dsl'
 class BBCRegistrationUserDetails
   include Capybara::DSL
 
-  EMAIL = '#user-identifier-input'
-  PASSWORD = '#password-input'
-  POSTCODE = '#postcode-input'
-  GENDER = '#gender-input'
-  OPT_IN = 'optIn'
-  OPT_OUT = '#optOut'
-  SUMBIT = '#submit-button'
+  EMAIL = 'email'
+  PASSWORD = 'password'
+  POSTCODE = 'postcode'
+  GENDER = 'gender'
+  OPT_IN = '//*[@id="marketingOptIn"]/div[1]/div[1]/label/div'
+  OPT_OUT = '//*[@id="marketingOptIn"]/div[1]/div[2]/label/div'
+  REGISTER = '#submit-button'
 
   def input_email(email)
     fill_in(EMAIL, with: email)
@@ -24,21 +24,23 @@ class BBCRegistrationUserDetails
   end
 
   def input_gender(gender)
-    select(gender, :from => GENDER
+    select(gender, :from => GENDER)
   end
 
   def input_email_spam_choice(choice)
     if choice == 'optIn'
-      click(OPT_IN)
+      # click('No, thanks')
+      find(:xpath, OPT_IN).click
     elsif choice == 'optOut'
-      click(OPT_OUT)
+      # choose('Yes, please')
+      find(:xpath, OPT_OUT).click
     else
-      break
+      throw
     end
   end
 
   def register_submit
-    click(Submit)
+    find(REGISTER).click
   end
 
 end

@@ -7,7 +7,7 @@ class BBCRegistrationAgeCheck
   OVER_13 = '13 or over'
 
   def click_over_thirteen
-    click(OVER_13)
+    click_link(OVER_13)
   end
 
 end
