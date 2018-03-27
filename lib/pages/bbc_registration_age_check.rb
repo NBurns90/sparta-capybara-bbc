@@ -10,4 +10,9 @@ class BBCRegistrationAgeCheck
     click_link(OVER_13)
   end
 
+  # Gets
+  def get_url
+    current_url
+  end
+
 end

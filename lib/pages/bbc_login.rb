@@ -38,4 +38,9 @@ class BBCLogin
     find(USERNAME_ERROR).visible?
   end
 
+  # Gets
+  def get_url
+    current_url
+  end
+
 end
