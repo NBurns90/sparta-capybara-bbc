@@ -22,6 +22,4 @@ class BBCHomepage
     sign_in_link.click
   end
 
-
-
 end

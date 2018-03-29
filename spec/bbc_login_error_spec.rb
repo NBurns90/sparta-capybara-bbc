@@ -5,6 +5,9 @@ describe "Incorrect user details produces valid error" do
   context "should be able to create a new user" do
 
     before(:all) do
+      @address = TenMinuteEmailSite.new
+      @address.ten_minute_email_registation.visit_home_page
+      @storedemail = @address.ten_minute_email_registation.get_address
       @bbc_site = BBCSite.new
       @bbc_site.bbc_homepage.visit_home_page
     end
@@ -33,8 +36,8 @@ describe "Incorrect user details produces valid error" do
 
     # email
     it "email should equal the passed input" do
-      @bbc_site.bbc_registration_user_details.input_email('Test@testtest.com')
-      expect(@bbc_site.bbc_registration_user_details.get_email).to eq('Test@testtest.com')
+      @bbc_site.bbc_registration_user_details.input_email(@storedemail)
+      expect(@bbc_site.bbc_registration_user_details.get_email).to eq(@storedemail)
     end
 
     # it "invalid email input should return an error" do
@@ -70,6 +73,9 @@ describe "Incorrect user details produces valid error" do
     it "complete registration" do
       @bbc_site.bbc_registration_user_details.input_email_spam_choice('optOut')
       @bbc_site.bbc_registration_user_details.register_submit
+      @bbc_site.bbc_homepage.visit_home_page
+      @bbc_site.bbc_homepage.sign_in_link_click
+      @bbc_site.bbc_account.sign_out
     end
 
   end
