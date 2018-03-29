@@ -7,7 +7,7 @@ class BBCAccountPage
   SIGN_OUT = 'Sign out'
 
   def sign_out
-    click_link('Sign out')
+    click_link(SIGN_OUT)
   end
 
 end

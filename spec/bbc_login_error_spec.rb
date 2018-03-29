@@ -73,6 +73,9 @@ describe "Incorrect user details produces valid error" do
     it "complete registration" do
       @bbc_site.bbc_registration_user_details.input_email_spam_choice('optOut')
       @bbc_site.bbc_registration_user_details.register_submit
+    end
+
+    it "once completed, should sign you out" do
       @bbc_site.bbc_homepage.visit_home_page
       @bbc_site.bbc_homepage.sign_in_link_click
       @bbc_site.bbc_account.sign_out

@@ -28,7 +28,7 @@ class BBCSite
   end
 
   def bbc_account
-    BBCRegistrationUserDetails.new
+    BBCAccountPage.new
   end
 
 end
